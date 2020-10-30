@@ -12,8 +12,15 @@ if(isset($_POST['submit'])){
     $pname=$_POST["pname"];
     $sname=$_POST["sname"];
 
-    $image = $_FILES['image']['name'];
-    $target = "images/".basename($image);
+    $image1= $_FILES['image']['name'];
+    $image2=$_FILES['sfile']['name'];
+    $filetmp=$_FILES['image']['tmp_name'];
+    $filetmp2=$_FILES['sfile']['tmp_name'];
+    $target = "images/".$image1;
+    $target2='images/'.$image2;
+    move_uploaded_file($filetmp,$target);
+    move_uploaded_file($filetmp2,$target2);
+
     $msg="";
     // //print_r($file);
     // $fileName = $_FILES['pfile']['name'];
@@ -51,7 +58,7 @@ if(isset($_POST['submit'])){
    
 
 
-$sql = "INSERT INTO certificate (name, mid, mmonth,tdate,pname,pfile,sname)VALUES ('$name','$mid','$mmonth','$tdate','$pname','$image','$sname')";
+$sql = "INSERT INTO certificate (name, mid, mmonth,tdate,pname,pfile,sname,sfile)VALUES ('$name','$mid','$mmonth','$tdate','$pname','$image1','$sname','$image2' )";
 
         if ($conn->query($sql) === True)
         {
@@ -61,9 +68,18 @@ $sql = "INSERT INTO certificate (name, mid, mmonth,tdate,pname,pfile,sname)VALUE
                 $i=0;
                 while($row = mysqli_fetch_array($results)){
                     echo header("Location:certificate.php?edit=$row[id]");
+                
                     $i++;
                 }
             }
+
+
+
+
+
+
+
+
             //  mysqli_query($conn,$sql);
                   
             //   }else{

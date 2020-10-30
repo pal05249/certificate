@@ -48,7 +48,7 @@
                 <div class="form-group">
                     <label for="pname">President sign upload</label>
                     <!-- <input type="text" class="form-control" name="pname"> -->
-                    <input type="file" name="image">
+                    <input type="file" class="form-control" name="image">
                 </div>
                 <div class="form-group">
                     <label for="sname">Name of the Secretary</label>
